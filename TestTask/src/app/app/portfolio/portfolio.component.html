@@ -5,7 +5,7 @@
   <h2>Your stocks:</h2>
   <div class="row">
 
-    <app-stock-card [sellOrBuy]="'sell'" [stock]="stock" class=" col-md-6 col-lg-4" *ngFor="let stock of user.stocks">
+    <app-stock-card (sellPrice)="sell($event)" [sellOrBuy]="'sell'" [stock]="stock" class=" col-md-6 col-lg-4" *ngFor="let stock of user.stocks">
 
     </app-stock-card>
     <div class="container text-center" *ngIf="user.stocks.length==0">

@@ -21,7 +21,9 @@
       <input appIntegerInput
              (change)="changePrice($event.target,price,stock.price)" matInput
              #quantity type="number" value="1"
-             min="1">
+             min="1"
+             [max]="stock.quantity?stock.quantity:''"
+      >
     </mat-form-field>
     <ng-container *ngIf="sellOrBuy==='buy'; else sellButton">
       <button (click)="buyStock(quantity.value,stock)" class="btn btn-success">Buy</button>

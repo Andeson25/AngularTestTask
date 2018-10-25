@@ -15,19 +15,23 @@ export class PortfolioComponent implements OnInit {
 
   constructor(private _userService: UserService) {
     this.user = this._userService.user;
+    this.user.stocks.forEach(next => {
+      this.price += next.quantity * parseFloat(next.price);
+    })
     this._userService.user$.subscribe(next => {
       this.user = next;
-
     }, error => {
       console.error(error);
     });
   }
 
+  sell(value: number) {
+    this.price -= value;
+  }
+
 
   ngOnInit() {
-    this.user.stocks.forEach(next => {
-      this.price += next.quantity * parseFloat(next.price);
-    })
+
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Stock} from "../../models/stock";
 import {UserService} from "../../service/user.service";
 
@@ -10,6 +10,7 @@ import {UserService} from "../../service/user.service";
 export class StockCardComponent implements OnInit {
   @Input() stock: Stock;
   @Input() sellOrBuy: string;
+  @Output() sellPrice = new EventEmitter();
 
   balance = 0;
 
@@ -37,9 +38,6 @@ export class StockCardComponent implements OnInit {
     if (this.balance - parseFloat(stock.price) <= 0) {
       alert('Not enough money');
       return;
-    } else if (!new RegExp(/^[1-9]\d*$/).test(quantity)) {
-      alert('Invalid quantity');
-      return
     } else {
       this._userService.buyStock(stock, parseFloat(quantity));
     }
@@ -47,7 +45,12 @@ export class StockCardComponent implements OnInit {
 
 
   sellStock(quantity: string, stock: Stock) {
+    if (this.parseFloat(quantity) > this.stock.quantity) {
+      alert('Invalid quantity');
+      return;
+    }
     this._userService.sellStock(stock, Number.parseFloat(quantity));
+    this.sellPrice.emit(parseFloat(stock.price) * this.parseFloat(quantity));
   }
 
 
