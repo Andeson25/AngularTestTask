@@ -1,0 +1,30 @@
+nav {
+  padding: 0;
+  a {
+    color: #ffffff !important;
+    margin: 5px 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    outline: none;
+  }
+  button {
+    margin-right: 5px;
+    filter: invert(100);
+  }
+  div.collapse {
+    li {
+      outline: none;
+      padding: 0;
+      background-color: #007bff;
+      transition: filter .15s linear;
+      &:hover {
+        background-color: #0066cb;
+        filter: brightness(.85);
+        cursor: pointer;
+      }
+      &.active {
+        background-color: #0066cb;
+      }
+    }
+  }
+}

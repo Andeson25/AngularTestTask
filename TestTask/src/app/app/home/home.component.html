@@ -1,0 +1,54 @@
+<div class="container">
+  <mat-form-field>
+    <mat-select [(value)]="filter" (selectionChange)="myFilter()" placeholder="Choose a category to filter">
+      <mat-option [value]="'Disable Filtering'">
+        Disable filtering
+      </mat-option>
+      <mat-option [value]="'Consumer Services'">
+        Consumer Services
+      </mat-option>
+      <mat-option [value]="'Finance'">
+        Finance
+      </mat-option>
+      <mat-option [value]="'Public Utilities'">
+        Public Utilities
+      </mat-option>
+      <mat-option [value]="'Health Care'">
+        Health Care
+      </mat-option>
+      <mat-option [value]="'Technology'">
+        Technology
+      </mat-option>
+      <mat-option [value]="'Basic Industries'">
+        Basic Industries
+      </mat-option>
+      <mat-option [value]="'Consumer Non-Durables'">
+        Consumer Non-Durables
+      </mat-option>
+      <mat-option [value]="'Energy'">
+        Energy
+      </mat-option>
+      <mat-option [value]="'Transportation'">
+        Transportation
+      </mat-option>
+      <mat-option [value]="'Capital Goods'">
+        Capital Goods
+      </mat-option>
+      <mat-option [value]="'n/a'">
+        n/a
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="row">
+    <app-stock-card [sellOrBuy]="'buy'" [stock]="stock" class=" col-md-6 col-lg-4" *ngFor="let stock of stocks">
+    </app-stock-card>
+  </div>
+</div>
+
+
+<div class="container loading" *ngIf="showLoad&&!wasEnd"><img src="../../../assets/loading.gif" height="100" width="100"
+                                                              alt="loading"></div>
+
+<div class="container text-center" *ngIf="stocks.length==0&&!showLoad">
+  <h2>There are no stocks</h2>
+</div>

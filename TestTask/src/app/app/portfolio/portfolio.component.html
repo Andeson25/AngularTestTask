@@ -1,0 +1,15 @@
+<div class="container">
+
+  <h2>Current price of all {{price|customFloatPipe}}</h2>
+  <br>
+  <h2>Your stocks:</h2>
+  <div class="row">
+
+    <app-stock-card [sellOrBuy]="'sell'" [stock]="stock" class=" col-md-6 col-lg-4" *ngFor="let stock of user.stocks">
+
+    </app-stock-card>
+    <div class="container text-center" *ngIf="user.stocks.length==0">
+      <h2>There are no stocks</h2>
+    </div>
+  </div>
+</div>
